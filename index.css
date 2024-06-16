@@ -3,8 +3,23 @@ body {
     padding: 0;
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
 .bg-gray {
     background-color: gray !important;
+}
+
+.mb-1 {
+    margin-bottom: 1rem !important;
 }
 
 .flex-container {
@@ -12,7 +27,6 @@ body {
     --sidebar-width: 300px;
     --max-content-width: 1300px;
     --gap: 1rem;
-    margin-bottom: 1rem;
 
     display: flex;
     flex-direction: column;
@@ -128,7 +142,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin-bottom: 1rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid pink;
 }
@@ -142,7 +155,7 @@ body {
  * will let the grid items inherit the values from the parent
  * */
 
-.item {
+.grid-item {
     /* 
      * We need to pass the grid rows to the inner items 
      * and this is where CSS subgrid shines
@@ -192,14 +205,60 @@ body {
     grid-column: 2 / 4;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
 .list {
     grid-column: 1 / 4;
     display: grid;
     grid-template-columns: subgrid;
+    /* Align grid items along the row axis. Values:
+     * start
+     * end
+     * center
+     * stretch
+     * */
+    justify-items: end;
+    /* Align grid items along the column axis. Values: 
+     * start
+     * end
+     * center
+     * stretch
+     * */
+    align-items: end;
+    height: 60px;
+}
+
+.grid-auto-fill {
+    display: grid;
+    /**
+     * the way CSS Grid will cause overflow in the row.
+     * The columns will not wrap into new rows if the 
+     * viewport width is too narrow
+     */
+    grid-template-columns: repeat(12, minmax(100px, 1fr));
+
+    /**
+     * 
+     */
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+}
+
+
+.grid-auto-fit {
+    display: grid;
+    /**
+     * the way CSS Grid will cause overflow in the row.
+     * The columns will not wrap into new rows if the 
+     * viewport width is too narrow
+     */
+    grid-template-columns: repeat(12, minmax(100px, 1fr));
+    /**
+     * 
+     */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+}
+
+.grid-auto-size-item {
+    background-color: pink;
+    height: 40px;
 }
